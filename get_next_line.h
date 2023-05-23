@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/23 15:06:32 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/23 18:16:06 by shisaeki         ###   ########.fr       */
+/*   Created: 2023/05/23 15:07:45 by shisaeki          #+#    #+#             */
+/*   Updated: 2023/05/23 15:15:41 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int main(int argc, char **argv)
-{
-	char *filename;
-	int fd;
-	char *str;
-	static char *save;
+# include <fcntl.h>
+# include <unistd.h>
 
-	filename = argv[1];
-	fd = open(filename, O_RDONLY);
-
-	str = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!str)
-		return ;
-
-	read(fd, str, BUFFER_SIZE);
-	str[BUFFER_SIZE] = '\0';
-
-	printf("%s\n", str);
-	return (0);
-}
+#endif

@@ -6,21 +6,11 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:32:54 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/26 16:58:59 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:22:08 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <stdlib.h>
-
-int	open_file(char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	return (fd);
-}
 
 char	*read_file(int fd, char *save)
 {
@@ -93,32 +83,8 @@ char	*get_next_line(int fd)
 	save = read_file(fd, save);
 	line = get_line(save);
 	if (!line)
-	{
-		printf("line is NULL");
 		return (NULL);
-	}
 	save = reset_save(save);
 	return (line);
 }
 
-int main(int argc, char **argv)
-{
-	char *filename;
-	int fd;
-	char *save;
-	char *line;
-
-	fd = open_file(argv[1]);
-
-	for (int i = 0; i < 9; i++)
-	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			printf("-----EOF-----");
-			break;
-		}
-		printf("%d: %s\n", i, line);
-	}
-	return (0);
-}

@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:07 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/26 17:21:30 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:47:40 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 
 int main(int argc, char **argv)
 {
-	char *filename;
 	int fd;
-	char *save;
 	char *line;
 
+	(void) argc;
 	fd = open(argv[1], O_RDONLY);
 
 	for (int i = 0; i < 9; i++)

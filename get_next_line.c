@@ -6,11 +6,12 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:32:54 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/26 17:22:08 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:46:24 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char	*read_file(int fd, char *save)
 {
@@ -24,7 +25,7 @@ char	*read_file(int fd, char *save)
 	while (!ft_strchr(save, '\n') && result)
 	{
 		result = read(fd, buf, BUFFER_SIZE);
-		if (result == -1)
+		if (result == -1 || result == 0)
 		{
 			free(buf);
 			return (NULL);
@@ -76,7 +77,6 @@ char	*reset_save(char *save)
 
 char	*get_next_line(int fd)
 {
-	char *buf;
 	static char *save;
 	char *line;
 

@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:07:45 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/25 17:46:59 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:18:37 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strjoin(char const *s1, char const *s2);
+
+char	*get_next_line(int fd);
 
 #endif

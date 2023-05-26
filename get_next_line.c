@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 13:32:54 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/25 18:34:52 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:58:59 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_line(char *save)
 	line = (char *)malloc((sizeof(char) * (i + 1)));
 	if (!line)
 		return (NULL);
-	ft_strlcpy(line, save, i + 2);
+	ft_strlcpy(line, save, i + 1);
 	return (line);
 }
 
@@ -72,6 +72,8 @@ char	*reset_save(char *save)
 	size_t	i;
 
 	i = 0;
+	if (!save)
+		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
 	save_new = (char *)malloc(sizeof(char) * (ft_strlen(save) - i));
@@ -90,6 +92,11 @@ char	*get_next_line(int fd)
 
 	save = read_file(fd, save);
 	line = get_line(save);
+	if (!line)
+	{
+		printf("line is NULL");
+		return (NULL);
+	}
 	save = reset_save(save);
 	return (line);
 }
@@ -103,17 +110,15 @@ int main(int argc, char **argv)
 
 	fd = open_file(argv[1]);
 
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	line = get_next_line(fd);
-	printf("%s", line);
+	for (int i = 0; i < 9; i++)
+	{
+		line = get_next_line(fd);
+		if (!line)
+		{
+			printf("-----EOF-----");
+			break;
+		}
+		printf("%d: %s\n", i, line);
+	}
 	return (0);
 }

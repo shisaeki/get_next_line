@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:52:22 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/26 17:52:26 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:56:34 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*read_file(int fd, char *save)
 {
@@ -25,11 +24,13 @@ char	*read_file(int fd, char *save)
 	while (!ft_strchr(save, '\n') && result)
 	{
 		result = read(fd, buf, BUFFER_SIZE);
-		if (result == -1 || result == 0)
+		if (result == -1)
 		{
 			free(buf);
 			return (NULL);
 		}
+		if (result == 0)
+			break ;
 		buf[result] = '\0';
 		if (!save)
 			save = ft_strdup(buf);
@@ -37,7 +38,7 @@ char	*read_file(int fd, char *save)
 			save = ft_strjoin(save, buf);
 	}
 	free(buf);
-	return(save);
+	return (save);
 }
 
 char	*get_line(char *save)
@@ -48,8 +49,12 @@ char	*get_line(char *save)
 	if (!save)
 		return (NULL);
 	i = 0;
-	while (save[i] && save[i] !=  '\n')
+	while (save[i])
+	{
+		if (save[i] == '\n')
+			break ;
 		i++;
+	}
 	line = (char *)malloc((sizeof(char) * (i + 1)));
 	if (!line)
 		return (NULL);
@@ -59,7 +64,7 @@ char	*get_line(char *save)
 
 char	*reset_save(char *save)
 {
-	char *save_new;
+	char	*save_new;
 	size_t	i;
 
 	i = 0;
@@ -67,6 +72,11 @@ char	*reset_save(char *save)
 		return (NULL);
 	while (save[i] && save[i] != '\n')
 		i++;
+	if (!save[i])
+	{
+		free(save);
+		return (NULL);
+	}
 	save_new = (char *)malloc(sizeof(char) * (ft_strlen(save) - i));
 	if (!save_new)
 		return (NULL);
@@ -77,8 +87,8 @@ char	*reset_save(char *save)
 
 char	*get_next_line(int fd)
 {
-	static char *save;
-	char *line;
+	static char	*save;
+	char		*line;
 
 	save = read_file(fd, save);
 	line = get_line(save);
@@ -88,3 +98,25 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
+// #include "get_next_line.h"
+// #include <stdio.h>
+
+// int	main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	(void) argc;
+// 	fd = open(argv[1], O_RDONLY);
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		if (!line)
+// 		{
+// 			printf("-----EOF-----");
+// 			break;
+// 		}
+// 		printf("%s\n",line);
+// 	}
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:19:02 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/25 17:42:41 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/28 14:12:02 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (len);
 }
 
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;
@@ -113,6 +112,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		len_s1++;
 	}
 	result[len_s1] = '\0';
+	free((void *)s1);
 	return (result);
 }
-

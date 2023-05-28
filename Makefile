@@ -6,7 +6,7 @@
 #    By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/26 17:53:24 by shisaeki          #+#    #+#              #
-#    Updated: 2023/05/26 17:53:27 by shisaeki         ###   ########.fr        #
+#    Updated: 2023/05/28 14:24:31 by shisaeki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=get_next_line
 
 CC=gcc
 
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-g -Wall -Wextra -Werror
 
 SRCS=main.c \
 		get_next_line.c \

@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:16:07 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/28 19:46:29 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:38:19 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	char	*line;
+	size_t	i;
 
 	(void) argc;
 	fd = open(argv[1], O_RDONLY);
-	for (int i = 0; i < 9; i++)
+	i = 0;
+	while (1)
 	{
 		line = get_next_line(fd);
+		printf("%zu: %s", i, line);
 		if (!line)
 		{
-			printf("-----EOF-----");
 			break;
 		}
-		printf("%d: %s\n", i, line);
+		i++;
 	}
 	return (0);
 }

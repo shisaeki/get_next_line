@@ -6,11 +6,11 @@
 /*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 13:19:02 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/29 15:02:00 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:41:03 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *s)
 {

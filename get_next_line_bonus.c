@@ -6,11 +6,11 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 17:52:22 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/29 17:11:16 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:43:25 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *save)
 {
@@ -78,20 +78,20 @@ char	*reset_save(char *save)
 
 char	*get_next_line(int fd)
 {
-	static char	*save;
+	static char	*save[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
-	save = read_file(fd, save);
-	if (!save || !(*save))
+	save[fd] = read_file(fd, save[fd]);
+	if (!save[fd] || !(*save[fd]))
 	{
-		free(save);
+		free(save[fd]);
 		return (NULL);
 	}
-	line = get_line(save);
+	line = get_line(save[fd]);
 	if (!line)
 		return (NULL);
-	save = reset_save(save);
+	save[fd] = reset_save(save[fd]);
 	return (line);
 }

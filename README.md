@@ -1,7 +1,7 @@
 # get_next_line
-This is a system that reads from file descriptors line by line and outputs standard output.
+This is a function that reads from file descriptors line by line and outputs standard output.
+It works similarly to the fgets function in the standard C library.
 
-## get_next_line(normal)
-Normal get_next_line accepts input from only a single file descriptor.
+## Algorithm
 
 ## get_next_line()
